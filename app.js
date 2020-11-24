@@ -1,15 +1,23 @@
 const request = require('request');
 
-// const url ="http://dataservice.accuweather.com/currentconditions/v1/202396?apikey=K77ESaJGE8NH6Hy2BlfZDSFeym2cxHKG"
+const url ="http://dataservice.accuweather.com/currentconditions/v1/202396?apikey=K77ESaJGE8NH6Hy2BlfZDSFeym2cxHKG"
 
-// request({url, json: true}, (error, response) => {    
-//     console.log(response.body[0].Temperature)
-// });
+request({url, json: true}, (error, response) => {  
+    if(!error){
+        console.log(response.body[0].Temperature)
+    } else{
+        console.log('Unable to connect to the desire API')
+    }
+});
 
 const newUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic2hydXRpYWdhcndhbDMwIiwiYSI6ImNraHY1bDNiczFhbmYycmxodWFoMHZxYXYifQ.TC5c58DMuOAM2MCiYwhS2A&limit=1"
 
 request({url: newUrl, json: true}, (error, response) => {
-    console.log(response.body.features[0].center)
+    if(!error){
+        console.log(response.body.features[0].center)
+    } else{
+        console.log('Unable to connect to the desire API')
+    }
 })
 
 
