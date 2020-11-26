@@ -1,20 +1,28 @@
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast')
+const location = require('./utils/location')
 
-forecast(20236, (error, data) => {
-    if(error){
-        console.log(error);
-    } else{
-        console.log(data);
-    }
-})
-geocode('Varanasi, Uttar Pradesh', (error, result) => {
+// forecast(20236, (error, data) => {
+//     if(error){
+//         console.log(error);
+//     } else{
+//         console.log(data);
+//     }
+// });
+// geocode('Varanasi, Uttar Pradesh', (error, result) => {
+//     if(error){
+//         console.log(`Error: ${error}`)
+//     } else{
+//         console.log(`Data: ${result}`)
+//     }
+// });
+location('Pilibhit, Uttar Pradesh, India', (error, result) => {
     if(error){
         console.log(`Error: ${error}`)
     } else{
         console.log(`Data: ${result}`)
     }
-})
+});
 
 
 // console.log('Starting');
