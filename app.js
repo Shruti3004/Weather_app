@@ -1,17 +1,13 @@
-const request = require('request');
 const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast')
 
-// const url ="http://dataservice.accuweather.com/currentconditions/v1/202396?apikey=K77ESaJGE8NH6Hy2BlfZDSFeym2cxHKG"
-
-// request({url, json: true}, (error, response) => {  
-//     if(error){
-//         console.log('Unable to connect to the desire API')
-//     } else if(response.body.Code){
-//         console.log('Unable to find location')
-//     } else{
-//         console.log(response.body[0].Temperature)
-//     }
-// });
+forecast(20236, (error, data) => {
+    if(error){
+        console.log(error);
+    } else{
+        console.log(data);
+    }
+})
 geocode('Varanasi, Uttar Pradesh', (error, result) => {
     if(error){
         console.log(`Error: ${error}`)
