@@ -14,15 +14,15 @@ const address = process.argv[2];
 if(!address){
     console.log('Enter the valid location')
 } else{
-    location(address, (error, result) => {
+    location(address, (error, {key, location}) => {
         if(error){
             return console.log(`Error: ${error}`)
         }
-        forecast(result.key, (error, data) => {
+        forecast(key, (error, data) => {
             if(error){
                 return console.log(error);
             } 
-            console.log(data.Metric, result.location);        
+            console.log(data, location);        
         });
     });
 }
