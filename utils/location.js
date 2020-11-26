@@ -8,7 +8,10 @@ const location = (address, callback) => {
         } else if(response.body.length === 0){
             callback('Unable to find location')
         } else{
-            callback(undefined, `${response.body[0].Key} for location: ${response.body[0].LocalizedName}`)
+            callback(undefined, {
+                key: response.body[0].Key,
+                location: response.body[0].LocalizedName
+            })
         }
     });
 }

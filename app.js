@@ -2,13 +2,6 @@ const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast')
 const location = require('./utils/location')
 
-// forecast(20236, (error, data) => {
-//     if(error){
-//         console.log(error);
-//     } else{
-//         console.log(data);
-//     }
-// });
 // geocode('Varanasi, Uttar Pradesh', (error, result) => {
 //     if(error){
 //         console.log(`Error: ${error}`)
@@ -16,13 +9,23 @@ const location = require('./utils/location')
 //         console.log(`Data: ${result}`)
 //     }
 // });
-location('Pilibhit, Uttar Pradesh, India', (error, result) => {
-    if(error){
-        console.log(`Error: ${error}`)
-    } else{
-        console.log(`Data: ${result}`)
-    }
-});
+// On return the function will end
+const address = process.argv[2];
+if(!address){
+    console.log('Enter the valid location')
+} else{
+    location(address, (error, result) => {
+        if(error){
+            return console.log(`Error: ${error}`)
+        }
+        forecast(result.key, (error, data) => {
+            if(error){
+                return console.log(error);
+            } 
+            console.log(data.Metric, result.location);        
+        });
+    });
+}
 
 
 // console.log('Starting');
