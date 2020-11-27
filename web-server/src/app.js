@@ -1,9 +1,12 @@
+const path = require('path');
 const express =  require('express');
 const app = express();
 
-app.get('', (req, res) => {
-    res.send('<h1>Server Running</h1>');
-});
+console.log(__dirname);
+console.log(path.join(__dirname, '../public'));
+
+const publicDirectoryPath = path.join(__dirname, '../public');
+app.use(express.static(publicDirectoryPath))
 
 // express identifies the object and stringify it as json
 app.get('/help', (req, res) => {
