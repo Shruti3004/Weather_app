@@ -2,12 +2,18 @@ const path = require('path');
 const express =  require('express');
 const app = express();
 
+// Define paths for Express config
+const publicDirectoryPath = path.join(__dirname, '../public');
+const viewDirectoryPath = path.join(__dirname, '../templates');
+
 console.log(__dirname);
 console.log(path.join(__dirname, '../public'));
 
+// Setup Handlebars engine and views location
 app.set('view engine', 'hbs');
+app.set('views', viewDirectoryPath);
 
-const publicDirectoryPath = path.join(__dirname, '../public');
+// Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
 // render allows us to render one of our views
