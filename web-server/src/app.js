@@ -1,10 +1,14 @@
+// It will only restart the server when we make changes in app.js for reloading it when other files will change we have to run the command "nodemon src/app.js -e js,hbs" where e is the shorthand for extension
 const path = require('path');
 const express =  require('express');
+const hbs = require('hbs');
+
 const app = express();
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public');
-const viewDirectoryPath = path.join(__dirname, '../templates');
+const viewDirectoryPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials');
 
 console.log(__dirname);
 console.log(path.join(__dirname, '../public'));
@@ -12,6 +16,8 @@ console.log(path.join(__dirname, '../public'));
 // Setup Handlebars engine and views location
 app.set('view engine', 'hbs');
 app.set('views', viewDirectoryPath);
+
+hbs.registerPartials(partialsPath)
 
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath))
