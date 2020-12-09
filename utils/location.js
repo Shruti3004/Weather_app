@@ -12,6 +12,7 @@ const location = (address, callback) => {
                 key: response.body[0].Key,
                 location: response.body[0].LocalizedName
             })
+            // console.log(response.body)
         }
     });
 }

@@ -43,6 +43,18 @@ app.get('/help', (req, res) => {
         name: 'Shruti Agarwal'
     })
 })
+app.get('/help/*', (req, res) => {
+    res.render('help404', {
+        title: 'Help article not found'
+    })
+})
+
+// * is a wild card character which depicts if it does not match any of the route it will come into play
+app.get('*', (req,res) => {
+    res.render('404', {
+        title: '404 Page'
+    })
+})
 
 // express identifies the object and stringify it as json
 // app.get('/help', (req, res) => {
