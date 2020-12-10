@@ -25,7 +25,7 @@ app.use(express.static(publicDirectoryPath))
 // render allows us to render one of our views
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Weather App',
+         title: 'Weather App',
         name: 'Shruti Agarwal'
     })
 })
@@ -36,6 +36,30 @@ app.get('/about', (req, res) => {
         name: 'Shruti Agarwal'
     })
 })
+app.get('/products', (req, res) => {
+    // console.log(req.query)
+    if(!req.query.search){
+        return res.send({
+            error: 'You must provide an search query'
+        })
+    }
+    console.log(req.query.search)
+    res.send({
+        products: []
+    })
+})
+
+app.get('/weather', (req, res) => {
+    if(!req.query.address){
+        return res.send({
+            error: 'You must provide an address query'
+        })
+    }
+    console.log(req.query.address)
+    res.send({
+        weather: []
+    })
+});
 
 app.get('/help', (req, res) => {
     res.render('help', {
@@ -48,6 +72,7 @@ app.get('/help/*', (req, res) => {
         title: 'Help article not found'
     })
 })
+
 
 // * is a wild card character which depicts if it does not match any of the route it will come into play
 app.get('*', (req,res) => {
@@ -72,12 +97,7 @@ app.get('*', (req,res) => {
 //     res.send('<h3>About page</h3>')
 // });
 
-app.get('/weather', (req, res) => {
-    res.send({
-        location: 'Boston',
-        forecast: 50
-    })
-});
+
 // app.com
 // app.com/help
 // app.com/about
