@@ -12,7 +12,7 @@ console.log(price);
 console.log(stock);
 console.log(rating);
 
-const transaction = (amount, {label, price, stock}) => {
+const transaction = (amount, {label, price, stock = 0} = {}) => {
     console.log(amount, label, price, stock);
 }
 transaction(2000, product);
