@@ -2,6 +2,8 @@
 const path = require('path');
 const express =  require('express');
 const hbs = require('hbs');
+const forecast = require('./utils/forecast')
+const location = require('./utils/location')
 
 const app = express();
 
@@ -55,10 +57,24 @@ app.get('/weather', (req, res) => {
             error: 'You must provide an address query'
         })
     }
-    console.log(req.query.address)
-    res.send({
-        weather: []
-    })
+    location(req.query.address, (error, result) => {
+        if(error){
+            return res.send({
+                error
+            })
+        }
+        forecast(result.key, (error, data) => {
+            if(error){
+                return res.send({
+                    error
+                })
+            }
+            res.send({
+                data,
+                location: result.location
+            });
+        });
+    });
 });
 
 app.get('/help', (req, res) => {
